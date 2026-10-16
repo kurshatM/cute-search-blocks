@@ -1,0 +1,292 @@
+/* ============================================
+   Cute Search Blocks — Styles
+   Neo-brutalist / cozy pastel aesthetic
+   ============================================ */
+
+/* ---------- Grid Container ---------- */
+#cute-blocks-grid {
+  display: grid;
+  /* min(100%, …) keeps a single column from overflowing narrow containers */
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 280px), 1fr));
+  gap: 20px;
+  padding: 24px 0;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* ---------- Card Base ---------- */
+.cute-block-card {
+  position: relative;
+  display: block;
+  min-width: 0;
+  border-radius: 18px;
+  border: 3px solid var(--cute-border);
+  background: var(--cute-bg);
+  padding: 22px 20px 18px;
+  color: inherit;
+  text-decoration: none;
+  box-shadow: 4px 4px 0 var(--cute-border);
+  transition: transform 0.25s cubic-bezier(.34, 1.56, .64, 1),
+              box-shadow 0.25s ease;
+}
+
+.cute-block-card:hover {
+  transform: translateY(-6px) scale(1.02);
+  box-shadow: 6px 8px 0 var(--cute-border);
+}
+
+.cute-block-card:active {
+  transform: translateY(-2px) scale(0.99);
+  box-shadow: 2px 3px 0 var(--cute-border);
+}
+
+.cute-block-card:focus-visible {
+  outline: 3px solid var(--cute-accent);
+  outline-offset: 3px;
+}
+
+/* ---------- Category Color Palettes ---------- */
+.cute-block-card[data-category="coding"] {
+  --cute-bg: #e8f4fd;
+  --cute-border: #7bafd4;
+  --cute-accent: #4a90b8;
+  --cute-tag-bg: #c4e1f5;
+}
+.cute-block-card[data-category="cooking"] {
+  --cute-bg: #fff3e6;
+  --cute-border: #e0a356;
+  --cute-accent: #c4863a;
+  --cute-tag-bg: #ffe4c2;
+}
+.cute-block-card[data-category="shopping"] {
+  --cute-bg: #fce8f4;
+  --cute-border: #d47ba0;
+  --cute-accent: #b85a84;
+  --cute-tag-bg: #f5c4de;
+}
+.cute-block-card[data-category="video"] {
+  --cute-bg: #efe6fc;
+  --cute-border: #9b7bd4;
+  --cute-accent: #7d5ab8;
+  --cute-tag-bg: #dcc4f5;
+}
+.cute-block-card[data-category="gaming"] {
+  --cute-bg: #e6fcef;
+  --cute-border: #5db87a;
+  --cute-accent: #3d9a5c;
+  --cute-tag-bg: #b8f0cb;
+}
+.cute-block-card[data-category="learning"] {
+  --cute-bg: #fdfce6;
+  --cute-border: #c4b83a;
+  --cute-accent: #a89e2a;
+  --cute-tag-bg: #f5f0b0;
+}
+.cute-block-card[data-category="social"] {
+  --cute-bg: #fce6e6;
+  --cute-border: #d47b7b;
+  --cute-accent: #b85a5a;
+  --cute-tag-bg: #f5c4c4;
+}
+.cute-block-card[data-category="general"] {
+  --cute-bg: #f0f0f0;
+  --cute-border: #a0a0a0;
+  --cute-accent: #707070;
+  --cute-tag-bg: #d8d8d8;
+}
+
+/* ---------- Card Inner Layout ---------- */
+.cute-block-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+  min-width: 0;
+}
+
+.cute-block-favicon {
+  width: 28px;
+  height: 28px;
+  border-radius: 8px;
+  border: 2px solid var(--cute-border);
+  background: #fff;
+  flex-shrink: 0;
+  object-fit: contain;
+}
+
+.cute-block-favicon[hidden] {
+  display: none;
+}
+
+.cute-block-domain {
+  font-size: 12px;
+  color: var(--cute-accent);
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.cute-block-title {
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 1.35;
+  color: #1a1a2e;
+  margin-bottom: 8px;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.cute-block-snippet {
+  font-size: 13px;
+  line-height: 1.5;
+  color: #4a4a5a;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.cute-block-tag {
+  display: inline-block;
+  margin-top: 12px;
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--cute-accent);
+  background: var(--cute-tag-bg);
+  border: 2px solid var(--cute-border);
+  border-radius: 20px;
+  padding: 3px 12px;
+  letter-spacing: 0.03em;
+}
+
+/* ---------- Floating Doodle Icons ---------- */
+/* Animations use the individual `translate` / `rotate` properties so they
+   compose with each icon's static positioning transform. */
+.cute-doodle-icon {
+  position: absolute;
+  width: 26px;
+  height: 26px;
+  color: var(--cute-accent);
+  opacity: 0.55;
+  pointer-events: none;
+  z-index: 1;
+  transition: opacity 0.3s ease;
+  animation: cuteFloat var(--float-duration) ease-in-out var(--delay) infinite;
+}
+
+.cute-doodle-icon svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.cute-doodle-icon .cb-bg    { fill: var(--cute-bg); }
+.cute-doodle-icon .cb-soft  { fill: var(--cute-tag-bg); }
+.cute-doodle-icon .cb-solid { fill: currentColor; stroke: none; }
+
+.cute-doodle-icon:nth-child(1) { top: -10px; right: 14px;  --float-duration: 3.2s; --delay: 0s; }
+.cute-doodle-icon:nth-child(2) { bottom: -8px; left: 14px; --float-duration: 3.8s; --delay: 0.4s; }
+.cute-doodle-icon:nth-child(3) { top: 50%; left: -12px; transform: translateY(-50%);
+                                 --float-duration: 3.5s; --delay: 0.8s; }
+.cute-doodle-icon:nth-child(4) { bottom: -8px; right: 18px; --float-duration: 4s; --delay: 1.2s; }
+
+.cute-block-card:hover .cute-doodle-icon {
+  opacity: 0.9;
+  animation: cuteWiggle 0.5s ease-in-out calc(var(--delay) / 5) 1;
+}
+
+@keyframes cuteFloat {
+  50% { translate: 0 -5px; }
+}
+
+@keyframes cuteWiggle {
+  25% { rotate: 12deg; }
+  50% { rotate: -10deg; }
+  75% { rotate: 6deg; }
+}
+
+/* ---------- Toggle Pill Button ---------- */
+/* Bottom-right so it doesn't cover Google's account / apps buttons. */
+#cute-blocks-toggle {
+  --toggle-color: #4a90b8;
+  --toggle-border: #7bafd4;
+  --toggle-bg: #fff;
+
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 100000;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--toggle-bg);
+  border: 3px solid var(--toggle-border);
+  border-radius: 50px;
+  padding: 8px 18px;
+  font: 700 13px/1.2 -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  color: var(--toggle-color);
+  cursor: pointer;
+  box-shadow: 3px 3px 0 var(--toggle-border);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  user-select: none;
+}
+
+#cute-blocks-toggle:hover {
+  transform: translateY(-2px);
+  box-shadow: 4px 5px 0 var(--toggle-border);
+}
+
+#cute-blocks-toggle:active {
+  transform: translateY(0);
+  box-shadow: 1px 1px 0 var(--toggle-border);
+}
+
+#cute-blocks-toggle:focus-visible {
+  outline: 3px solid var(--toggle-color);
+  outline-offset: 3px;
+}
+
+#cute-blocks-toggle.is-standard {
+  --toggle-color: #666;
+  --toggle-border: #aaa;
+  --toggle-bg: #f5f5f5;
+}
+
+#cute-blocks-toggle .toggle-icon {
+  font-size: 18px;
+  line-height: 1;
+}
+
+/* ---------- Hidden state (grid or original results) ---------- */
+.cute-blocks-original-hidden {
+  display: none !important;
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 720px) {
+  #cute-blocks-grid {
+    padding: 12px 0;
+    gap: 14px;
+  }
+  .cute-block-card {
+    padding: 16px 14px 14px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cute-block-card,
+  .cute-doodle-icon,
+  #cute-blocks-toggle {
+    animation: none !important;
+    transition: none !important;
+  }
+  .cute-block-card:hover,
+  .cute-block-card:active,
+  #cute-blocks-toggle:hover {
+    transform: none;
+  }
+}
